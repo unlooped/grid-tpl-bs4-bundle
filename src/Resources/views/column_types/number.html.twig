@@ -1,0 +1,15 @@
+{# @var type \Unlooped\GridBundle\Column\Column #}
+
+{% extends '@UnloopedGridTplBs4/column_types/_iterable_column.html.twig' %}
+
+{% block column_content %}
+    {% set amount = value %}
+    {% if amount is not null or column.options.nullAsZero %}
+        {{ amount|format_number(column.options.formatOptions, style=column.options.style) }}
+        {% if it_loop is defined and not it_loop.last %}
+            {{ type.options.implode_separator }}
+        {% endif %}
+    {% elseif amount is null %}
+        {{ column.options.nullSymbol }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{# @var grid \Unlooped\GridBundle\Model\Grid #}
+{% block list_head %}
+    {% block list_title %}
+        <div class="row justify-content-md-center mb-4">
+            <div class="col">
+                <h1>{{ grid.title }}</h1>
+            </div>
+        </div>
+    {% endblock %}
+    {% if grid.createRoute %}
+        <div class="row mb-3">
+            <div class="col-12 col-md-4">
+                <a href="{{ path(grid.createRoute) }}" class="btn btn-primary">
+                    {{ grid.createLabel|trans }}
+                    <span class="icon-plus-circled"></span>
+                </a>
+            </div>
+            <div class="col-12 col-md-8 mt-3 mt-md-0 text-md-right pt-2">
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block filter %}
+    {% block flashbag %}
+        {% for flashMessage in app.session.flashbag.get('unlooped_grid.warning') %}
+            <div class="alert alert-warning" role="alert">
+                <strong>{% trans %}unlooped_grid.flash_message.warning{% endtrans %}</strong> {{ flashMessage|trans }}
+            </div>
+        {% endfor %}
+    {% endblock %}
+
+    {% include grid.filterView with {'grid': grid} only %}
+{% endblock %}
+
+{% block list %}
+    {% block list_header %}
+        <div class="row align-items-end">
+            {% block pagination_top %}
+                {% include grid.paginationTemplate with {'grid': grid} only %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% include grid.listView with {'grid': grid} only %}
+
+    {% block list_footer %}
+        <div class="row align-items-end">
+            {% block pagination_bottom %}
+                {% include grid.paginationTemplate with {'grid': grid} only %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% if grid.createRoute %}
+        <div class="row mt-3">
+            <div class="col">
+                <a href="{{ path(grid.createRoute) }}" class="btn btn-primary">
+                    {{ grid.createLabel|trans }}
+                    <span class="icon-plus-circled"></span>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

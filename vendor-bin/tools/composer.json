@@ -1,0 +1,26 @@
+{
+    "name": "unlooped/dev-tools",
+    "type": "project",
+    "description": "Development tools that do not conflict the project dependencies",
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.1",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
+        "phpstan/phpstan-symfony": "^0.12",
+        "phpunit/phpunit": "^8.5 || ^9.0",
+        "psalm/plugin-phpunit": "^0.16",
+        "psalm/plugin-symfony": "^3.0",
+        "symfony/phpunit-bridge": "^6.0",
+        "vimeo/psalm": "^4.7"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4"
+        },
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}
